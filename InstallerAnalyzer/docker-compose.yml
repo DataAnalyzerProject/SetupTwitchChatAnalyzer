@@ -1,0 +1,31 @@
+version: '4'
+services:
+  mysql_storage:
+    image: hikachuu/storagetwitch
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-pw
+      MYSQL_ROOT_HOST: '%'
+
+  grafana:
+    image: hikachuu/grafana:latest
+    ports:
+      - "3000:3000"
+    restart: always
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - u
+
+  java_getter:
+    image: hikachuu/java_getter_data:latest
+    ports:
+      - "8080:8080"
+    restart: always
+    
+  front_id:
+    image: hikachuu/frontid:latest
+    ports:
+      - "4200:4200"
+    restart: always
